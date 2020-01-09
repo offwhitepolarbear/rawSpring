@@ -11,5 +11,8 @@
 한글 UTF8 초기 페이지임○馬
 </br>
 asd
+
+<img src="/favicon/favicon.ico" width="100" height="100" />
+
 </body>
 </html>

@@ -6,9 +6,9 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:springConfig/spring-servlet.xml,
-			classpath:springConfig/jdbc-context.xml
-			
+			<param-value>
+				classpath:springConfig/test-servlet.xml,
+				classpath:springConfig/jdbc-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
@@ -18,5 +18,8 @@
 		<servlet-name>spring</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
+
+	<!-- <servlet-mapping> <servlet-name>default</servlet-name> <url-pattern>/*/favicon</url-pattern> 
+		<url-pattern>/*/resource</url-pattern> </servlet-mapping> -->
+
 </web-app>
