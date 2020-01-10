@@ -15,7 +15,7 @@ public class HomeController {
 	public ModelAndView first() {
 		System.out.println("기본컨트롤러 호출됨");
 		System.out.println(tester);
-		return new ModelAndView("/WEB-INF/index.jsp");
+		return new ModelAndView("/view/index.jsp");
 		
 	}
 	
@@ -23,7 +23,7 @@ public class HomeController {
 	public ModelAndView home() {
 		System.out.println("컨트롤러 호출됨");
 //		return new ModelAndView("home");
-		return new ModelAndView("/WEB-INF/spring/home.jsp");
+		return new ModelAndView("/view/spring/home.jsp");
 		
 	}
 	
@@ -31,7 +31,7 @@ public class HomeController {
 	public ModelAndView test() {
 		System.out.println("test컨트롤러 호출됨");
 //		return new ModelAndView("home");
-		return new ModelAndView("/WEB-INF/test/test.jsp");
+		return new ModelAndView("/view/test/test.jsp");
 		
 	}
 }

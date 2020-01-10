@@ -21,7 +21,7 @@ public class SecondController {
 	@RequestMapping(value="test")
 	public String test() {
 		System.out.println("/test/testÀÓ");
-		return ("/WEB-INF/test/testtest.jsp");
+		return ("/view/test/testtest.jsp");
 	}
 	
 	@RequestMapping(value="read")
