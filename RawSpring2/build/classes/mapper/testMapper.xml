@@ -15,4 +15,5 @@
 	<select id="tester" resultMap="testDomainMap">
 		select * from smalltable
 	</select>
+	
 </mapper>

@@ -26,7 +26,8 @@
 		base-package="board.raw.controller"/>
 		
 		
-	    <mvc:resources mapping="/resources/**" location="/resource/" />
+	    <mvc:resources mapping="/resources/**" location="/resources/" />
+	    <mvc:resources mapping="/javascript/**" location="/javascript/" />
 </beans>
 
 
