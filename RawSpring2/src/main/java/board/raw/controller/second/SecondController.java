@@ -20,14 +20,12 @@ public class SecondController {
 	
 	@RequestMapping(value="test")
 	public String test() {
-		System.out.println("/test/test¿”");
 		return ("/view/test/testtest.jsp");
 	}
 	
 	@RequestMapping(value="read")
 	public String tester() {
 		td = sqlSession.selectOne("testMapper.tester");
-		System.out.println(td);
 		return null;
 	}
 	

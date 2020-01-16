@@ -9,7 +9,8 @@
 </head>
 <body>
 	<div id="p">한글 UTF8 초기 페이지임○馬</div>
-<div class="alert alert-dark" role="alert">
+<div class="alert alert-dark" role="alert" id="darkAlert">
+
   A simple dark alert—check it out!
 </div>
 	<div class="alert alert-primary" role="alert">A simple primary
@@ -39,6 +40,9 @@
 		
 		$(".alert").click(function(){
 			alert("파랭이");
+		});
+		$("#darkAlert").click(function(){
+			$(location).attr("href","http://localhost:8080/test/test");
 		});
 		
 	//});
