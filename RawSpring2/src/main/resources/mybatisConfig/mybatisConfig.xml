@@ -8,10 +8,12 @@
 
 	<typeAliases>
 		<typeAlias alias="testDomain" type="board.raw.domain.TestDomain" />
+		<typeAlias alias="user" type="board.raw.domain.User" />
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/testMapper.xml"/>
+		<mapper resource="mapper/userMapper.xml"/>
 	</mappers>
 
 </configuration>
