@@ -1,35 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-#phoneNumber {
-	width: 100%;
-}
-</style>
-<meta charset="UTF-8">
-<title>게시판 회원 가입</title>
+<title>이메일 찾기</title>
 </head>
 <body>
-
-	
 	<div class="container">
-	<div class='row'>
-	<div class='col-2'>
-	<c:import url="/view/toolbar/sidebar.jsp" >
-	</c:import>
-	</div>
-	<div class='col-10'>
-		<p>
-		<form id='registration' action='/user/addUser' method="post">
-			이메일 <input type="text" class="form-control" name='email'>
-			비밀번호 <input type="password" class="form-control" name='password'>
-			비밀번호확인 <input type="password" class="form-control" name='password2'>
-			이름 <input type="text" class="form-control" name='name'> 닉네임 <input
-				type="text" class="form-control" name='nickname'> 전화번호
+		<form id='findEmailForm'>
+			<input type="text" class="form-control" name='name'
+				placeholder="찾으실 회원의 이름">
+
 			<div class="input-group" id='phoneNumber'>
 				<select class="custom-select custom-select" name='phoneHead'>
 					<option value="010" selected>010</option>
@@ -41,12 +24,10 @@
 					type="text" class="form-control" name='phoneTail'>
 			</div>
 		</form>
-		</p>
-		<button type="button" class="btn btn-outline-primary btn-lg btn-block"
-			id='registrationButton'>가입</button>
+		<button type="button" class="btn btn-outline-primary btn-block"
+			id='findEmail'>이메일 찾기</button>
+
 	</div>
-	
-	</div></div>
 </body>
 
 <link rel="stylesheet"
@@ -59,14 +40,10 @@
 <script type="text/javascript"
 	src="/javascript/bootstrap/js/bootstrap.min.js"></script>
 
-
-
 <script type="text/javascript">
-	$("#registrationButton").click(function() {
-		$("#registration").attr("action","/user/addUser").attr("method", "POST").submit();
+	$("#findEmail").click(function() {
+		$("#findEmailForm").attr("action","/user/findEmail").attr("method","POST").submit();
 	});
 </script>
-
-
 
 </html>

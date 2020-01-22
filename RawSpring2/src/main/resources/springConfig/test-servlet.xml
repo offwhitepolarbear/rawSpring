@@ -18,15 +18,31 @@
 			</list>
 		</property>
 	</bean>
+	
 
 	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
 		<property name="prefix"> <value>/WEB-INF/spring/</value> </property> <property 
 		name="suffix"> <value>.jsp</value> </property> </bean> -->
 
-	<mvc:annotation-driven />
+	<mvc:annotation-driven>
+	
+		<mvc:message-converters>
+		
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		
+		</mvc:message-converters>
+		
+	</mvc:annotation-driven>
 
 	<context:component-scan
-		base-package="board.raw.controller, board.raw.user" />
+		base-package="board.raw.controller, board.raw.user, board.raw.board.controller" />
 
 	<mvc:resources mapping="/resources/**"
 		location="/resources/" />

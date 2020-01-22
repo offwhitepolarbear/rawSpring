@@ -16,16 +16,4 @@ public class HomeController {
 		return new ModelAndView("/view/index.jsp");
 		
 	}
-	
-	@RequestMapping(value="/home")
-	public ModelAndView home() {
-		return new ModelAndView("/view/spring/home.jsp");
-		
-	}
-	
-	@RequestMapping(value="/testtest")
-	public ModelAndView test() {
-		return new ModelAndView("/view/test/test.jsp");
-		
-	}
 }
