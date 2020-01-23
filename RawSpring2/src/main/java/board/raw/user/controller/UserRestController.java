@@ -26,10 +26,8 @@ public class UserRestController {
 	public String login(HttpSession session, @RequestBody User user) {
 		String loginResult = "login Failed";
 		User userFromDB = userService.getUser(user);
-		System.out.println("요청분석기"+user);
 		if( userFromDB != null) {
 			session.setAttribute("user", userFromDB);
-			System.out.println("로그인 됨");
 			loginResult = "to 클라이언트: 로그인 됐어요";
 		}
 		return loginResult;

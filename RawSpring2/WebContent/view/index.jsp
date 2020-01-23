@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,12 +11,10 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-2">
-				사이드 바 부분임
-				<div class="alert alert-info" role="alert">info-alert</div>
-				<br />
-
-			</div>
+			<div class='col-2'>
+	<c:import url="/view/toolbar/sidebar.jsp" >
+	</c:import>
+	</div>
 			<div class="col-10">
 				<div id="p">한글 UTF8 초기 페이지임○馬</div>
 				<div class="alert alert-dark" role="alert" id="darkAlert">A

@@ -1,11 +1,18 @@
 package board.raw.domain;
 
 public class Board {
+	int id;
 	String name;
 	String description;
 	int index;
-	boolean accessable;
+	char isActive;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -24,17 +31,17 @@ public class Board {
 	public void setIndex(int index) {
 		this.index = index;
 	}
-	public boolean isAccessable() {
-		return accessable;
+	public char isActive() {
+		return isActive;
 	}
-	public void setAccessable(boolean accessable) {
-		this.accessable = accessable;
+	public void setActive(char isActive) {
+		this.isActive = isActive;
 	}
 	
 	@Override
 	public String toString() {
-		return "Board [name=" + name + ", description=" + description + ", index=" + index + ", accessable="
-				+ accessable + "]";
+		return "Board [id=" + id + ", name=" + name + ", description=" + description + ", index=" + index
+				+ ", isActive=" + isActive + "]";
 	}
-		
+	
 }

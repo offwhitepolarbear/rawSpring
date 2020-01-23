@@ -17,7 +17,6 @@
 		<result property="registerTime"	column="register_time"	jdbcType="DATE" />
 		<result property="profileImg"	column="profile_img"	jdbcType="VARCHAR" />
 		<result property="userRole"		column="user_role"		jdbcType="CHAR" />
-		
 	</resultMap>
 
 	<insert id="addUser" parameterType="User">

@@ -18,8 +18,8 @@
 			</list>
 		</property>
 	</bean>
+	<aop:aspectj-autoproxy/>
 	
-
 	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
 		<property name="prefix"> <value>/WEB-INF/spring/</value> </property> <property 
 		name="suffix"> <value>.jsp</value> </property> </bean> -->
@@ -42,7 +42,7 @@
 	</mvc:annotation-driven>
 
 	<context:component-scan
-		base-package="board.raw.controller, board.raw.user, board.raw.board.controller" />
+		base-package="board.raw.controller, board.raw.user, board.raw.board.controller, board.raw.board, board.raw.aspect" />
 
 	<mvc:resources mapping="/resources/**"
 		location="/resources/" />
@@ -55,7 +55,7 @@
 			<mvc:mapping path="/**" />
 			<mvc:exclude-mapping path="/resources/**"/>
 			<mvc:exclude-mapping path="/javascript/**"/>
-			<bean class="board.raw.aspect.AopClass" />
+			<bean class="board.raw.aspect.InterceptorClass" />
 		</mvc:interceptor>
 
 	</mvc:interceptors>

@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.servlet.ModelAndView;
 
 import board.raw.domain.User;
 import board.raw.user.service.UserService;
@@ -42,9 +41,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="modifyUser", method=RequestMethod.GET)
-	public String modifyUserView(HttpSession session,Model model) {
+	public String modifyUserView(HttpSession session, Model model) {
 		User user = (User)session.getAttribute("user");
-		System.out.println("유저있나 알려줘"+user);
 		model.addAttribute("user",user);
 		return"/view/user/modifyUser.jsp";
 	}
@@ -100,6 +98,11 @@ public class UserController {
 		model.addAttribute("password", user.getPassword());
 		return "/view/user/findPasswordResult.jsp";
 	}
-
 	
+	@RequestMapping("logout")
+	public String logOut(HttpSession session) {
+		session.invalidate();
+		String pageAfterLogout = "/";
+		return pageAfterLogout;
+	}
 }
