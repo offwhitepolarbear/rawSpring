@@ -7,11 +7,13 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias alias="testDomain" type="board.raw.domain.TestDomain" />
+		<typeAlias alias="User" type="board.raw.domain.User" />
+		<typeAlias alias="Board" type="board.raw.domain.Board" />
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="mapper/testMapper.xml"/>
+		<mapper resource="mapper/userMapper.xml"/>
+		<mapper resource="mapper/boardMapper.xml"/>
 	</mappers>
 
 </configuration>

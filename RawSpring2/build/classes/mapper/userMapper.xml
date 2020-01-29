@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userMapper">
+
+	<resultMap id="userMap" type="user">
+		<result property="id"			column="id" 			jdbcType="NUMERIC" />
+		<result property="email"		column="email" 			jdbcType="VARCHAR" />
+		<result property="password"		column="password" 		jdbcType="VARCHAR" />
+		<result property="name"			column="name"			jdbcType="VARCHAR" />
+		<result property="nickname" 	column="nickname"		jdbcType="VARCHAR" />
+		<result property="phoneHead" 	column="phone_head"		jdbcType="NUMERIC" />
+		<result property="phoneBody"	column="phone_body"		jdbcType="NUMERIC" />
+		<result property="phoneTail"	column="phone_tail" 	jdbcType="NUMERIC" />
+		<result property="registerTime"	column="register_time"	jdbcType="DATE" />
+		<result property="profileImg"	column="profile_img"	jdbcType="VARCHAR" />
+		<result property="userRole"		column="user_role"		jdbcType="CHAR" />
+	</resultMap>
+
+	<insert id="addUser" parameterType="User">
+		<selectKey resultType="int" keyProperty="id" order="BEFORE">
+		select nextval('users_id_seq')
+		</selectKey>
+		INSERT INTO
+		users
+		(id,email,password,name,nickname,
+		phone_head,phone_body,phone_tail,
+		register_time,profile_img,user_role)
+		VALUES
+		(#{id},#{email},#{password},#{name},#{nickname},
+		#{phoneHead},#{phoneBody},#{phoneTail},
+		NOW(),#{profileImg},'u')
+	</insert>
+	
+	<select id="getPasswordByEmail" resultType="String">
+	SELECT
+	password
+	FROM
+	users
+	WHERE
+	email=#{email}
+	</select>
+	
+	<select id="getUserForLogin" resultMap="userMap">
+	SELECT
+		id,email,password,name,nickname,
+		phone_head,phone_body,phone_tail,
+		register_time,profile_img,user_role
+	FROM
+		users
+	WHERE
+		email=#{email}
+	AND
+		password=#{password}
+	</select>
+	
+	<select id="findEmail" parameterType="User" resultType="String">
+	SELECT
+		email
+	FROM
+		users
+	WHERE
+		name=#{name}
+	AND
+		phone_head=#{phoneHead}
+	AND
+		phone_body=#{phoneBody}
+	AND
+		phone_tail=#{phoneTail}
+	</select>
+	
+	<select id="findPassword" parameterType="User" resultType="String">
+	SELECT
+		password
+	FROM
+		users
+	WHERE
+		email = #{email}
+	AND
+		name = #{name}
+	AND
+		phone_head = #{phoneHead}
+	AND
+		phone_body = #{phoneBody}
+	AND
+		phone_tail = #{phoneTail}
+	</select>
+	
+	<update id="updateUser" parameterType="User">
+	UPDATE
+		users
+	SET
+		email = #{email},
+		name = #{name},
+		nickname = #{nickname},
+		phone_head = #{phoneHead},
+		phone_body = #{phoneBody},
+		phone_tail = #{phoneTail},
+		profile_img = #{profileImg}
+	WHERE
+		id=#{id}
+	</update>
+	
+</mapper>
