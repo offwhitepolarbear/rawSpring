@@ -3,7 +3,9 @@ package board.raw.aspect;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 
+@Component
 @Aspect
 public class AspectClass {
 	
@@ -13,7 +15,7 @@ public class AspectClass {
 	
 	@Before("within (board.raw.user.controller.UserController)")
 	public void aopTesting() {
-		System.out.println("ºñÆ÷aop ½ÇÇàµÊ?");
+		System.out.println("aopì‹¤í–‰ë¨");
 	}
 	
 }

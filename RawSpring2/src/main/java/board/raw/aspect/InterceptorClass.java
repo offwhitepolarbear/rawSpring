@@ -30,22 +30,22 @@ public class InterceptorClass implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object arg2, ModelAndView modelAndView)
 			throws Exception {
 		String tester = "/board/boardListTestr";
-		System.out.println("Æ÷½ºÆ® ÇÚµé·¯ ¿äÃ»"+request.getRequestURI());
+		System.out.println("ìš”ì²­ì£¼ì†Œ"+request.getRequestURI());
 		if(request.getRequestURI().equals(tester)) {
 			Map model = modelAndView.getModel();
 			model.put("boardList", boardService.getBoardList());
 			modelAndView.addAllObjects(model);
-			System.out.println("µÆ³ª");
+			System.out.println("ì™„ë£Œ");
 		}
 	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse arg1, Object arg2) throws Exception {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
+		System.out.println("ì„¸ì…˜ì— ìœ ì € ìˆë‚˜"+session.getAttribute("user"));
 		System.out.println(session.getId());
-		System.out.println("±âÁ¸ÆäÀÌÁö ÁÖ¼Ò ¾Ë·ÁÁà"+request.getHeader("REFERER"));
-		System.out.println("¿äÃ» ÁÖ¼Ò ¾Ë·ÁÁà"+request.getRequestURL());
+		System.out.println("ê¸°ì¡´í˜ì´ì§€ ì£¼ì†Œ"+request.getHeader("REFERER"));
+		System.out.println("ìš”ì²­ì£¼ì†Œ"+request.getRequestURL());
 		return true;
 	}
 

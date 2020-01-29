@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import board.raw.domain.User;
 import board.raw.user.service.UserService;
@@ -28,8 +29,17 @@ public class UserRestController {
 		User userFromDB = userService.getUser(user);
 		if( userFromDB != null) {
 			session.setAttribute("user", userFromDB);
-			loginResult = "to Å¬¶óÀÌ¾ğÆ®: ·Î±×ÀÎ µÆ¾î¿ä";
+			loginResult = user.getEmail()+"ë‹˜ í™˜ì˜í•©ë‹ˆë‹¤";
 		}
 		return loginResult;
 	}
+	
+	@ResponseBody
+	@PostMapping(value="sessionUserCheck")
+	public User sessionCheck(HttpSession session) {
+		User user = (User)session.getAttribute("user");
+		System.out.println(user);
+		return user;
+	}
+	
 }
