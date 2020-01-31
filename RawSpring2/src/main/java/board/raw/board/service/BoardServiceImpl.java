@@ -27,4 +27,10 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAOImpl.addBoard(board);
 	}
 
+	@Override
+	public List<Board> getBoardListForModify() {
+		// TODO Auto-generated method stub
+		return boardDAOImpl.getBoardListForModify();
+	}
+
 }

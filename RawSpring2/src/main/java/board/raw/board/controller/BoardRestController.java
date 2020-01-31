@@ -24,6 +24,11 @@ public class BoardRestController {
 		return boardList;
 	}
 	
+	@RequestMapping("getBoardListForModify")
+	public List<Board> getBoardListForModify() {
+		return boardService.getBoardList();
+	}
+	
 	@RequestMapping("getBoardInformations")
 	public List<Board> getModifiedBoardInformations(@RequestBody List<Board> boardList) {
 		for(Board board : boardList) {
@@ -32,4 +37,14 @@ public class BoardRestController {
 		return boardList;
 	}
 	
+	@RequestMapping("addBoard")
+	public String addBoard(@RequestBody List<Board> boardList) {
+		String response = "/board/addBoard";
+	
+		for(Board board : boardList) {
+			boardService.addBoard(board);
+		}
+				
+		return response;
+	}
 }

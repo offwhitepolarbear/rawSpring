@@ -22,8 +22,6 @@
 				<div class="alert alert-primary" role="alert">A simple primary
 					alert—check it out!</div>
 
-				<img src="/resources/favicon/favicon.ico" width="100" height="100" />
-
 				<div class="alert alert-primary" role="alert">A simple primary
 					alert—check it out!</div>
 			</div>

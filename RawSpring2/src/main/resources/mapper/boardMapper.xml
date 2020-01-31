@@ -11,27 +11,44 @@
 		<result property="name" column="name" jdbcType="VARCHAR" />
 		<result property="description" column="description"
 			jdbcType="VARCHAR" />
+			<result property="url" column="url"
+			jdbcType="VARCHAR" />
 		<result property="isActive" column="is_active" jdbcType="CHAR" />
 	</resultMap>
 
 	<insert id="addBoard" parameterType="Board">
 		<selectKey resultType="int" keyProperty="id" order="BEFORE">
-			select nextval('board_id_seq')
-		</selectKey>
+			SELECT
+			nextval('board_id_seq')
+		</selectKey>	
 		INSERT INTO
-			board
-			(id, index, name, description, is_active)
+		board
+		(id, index, name, description, url, is_active)
 		VALUES
-			(#{id}, #{index}, #{name}, #{description}, 'A')
+		(#{id}, (SELECT MAX(index)+1 FROM board), #{name}, #{description}, #{url}, 'A')
 	</insert>
 
 	<select id="getBoardList" resultMap="boardMap">
 		SELECT
-			id, index, name, description, is_active
+			id, index, name,
+			description, is_active, url
 		FROM
 			board
+		WHERE 
+			is_active='A'
 		ORDER BY
 			index ASC
 	</select>
-	
+
+	<select id="getBoardListForModify" resultMap="boardMap">
+		SELECT
+		id, index, name,
+		description, is_active ,url
+		FROM
+		board
+		ORDER BY
+		index ASC
+	</select>
+
+
 </mapper>

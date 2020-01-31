@@ -26,4 +26,9 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.insert("boardMapper.addBoard", board);
 	}
 
+	@Override
+	public List<Board> getBoardListForModify() {
+		return sqlSession.selectList("boardMapper.getBoardListForModify");
+	}
+
 }

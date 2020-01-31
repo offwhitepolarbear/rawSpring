@@ -8,8 +8,19 @@
 <title></title>
 </head>
 <body>
+
+<hr>
 	<a id='userInfo'>
+		<div class="card">
+			<div class="card-body">
+			<div class='text-center' id='userInfoTarget'>
+				<button type="button" class="btn btn-lg btn-outline-success" id='login'>로그인</button>
+			</div>
+			</div>
+		</div>
 	</a>
+	<hr>
+	<a id='boardList'> </a>
 </body>
 
 <link rel="stylesheet"
@@ -23,58 +34,81 @@
 	src="/javascript/bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-function testt(index){
-	location.href="/board/"+index+"/";
-};
-$(function(){
-	$.ajax({
-		headers : {
-			"Accept" : "application/json",
-			"Content-Type" : "application/json"
-		},
-		type : "POST",
-		url : "/user/rest/sessionUserCheck",
-		dataType : "text",
-		beforeSend : function() {
-		},
-		error : function(request, status, error) {
-			alert("에러발생함");
-		},
-		success : function(data) {
-			var user = JSON.parse(data);
-			$("#userInfo").append(user.email+" : "+user.name+" : "+user.nickname);
-		},
-		complete : function() {
-		}
-	});	
-});
-$(function(){
+	$(function() {
+		$
+				.ajax({
+					headers : {
+						"Accept" : "application/json",
+						"Content-Type" : "application/json"
+					},
+					type : "POST",
+					url : "/user/rest/sessionUserCheck",
+					dataType : "text",
+					beforeSend : function() {
+					},
+					error : function(request, status, error) {
+						alert("에러발생함");
+					},
+					success : function(data) {
+						var user = JSON.parse(data);
+						if(user != null){
+							$("#userInfoTarget").html(
+									user.email + " : " + user.name + " : "
+											+ user.nickname);
+						}
+						
+					},
+					complete : function() {
+					}
+				});
+	});
+	$(function() {
+
+		var boardList;
+		$.ajax({
+			headers : {
+				"Accept" : "application/json",
+				"Content-Type" : "application/json"
+			},
+			type : "POST",
+			url : "/board/rest/getBoardList",
+			dataType : "text",
+			beforeSend : function() {
+			},
+			error : function(request, status, error) {
+				alert("에러발생함");
+			},
+			success : function(data) {
+				boardList = JSON.parse(data);
+				boardList
+						.forEach(function(board, index, array) {
+							$("#boardList").append(
+									boardListTag(board.name, board.url));
+						});
+			},
+			complete : function() {
+			}
+		});
+
+	});
+	function userTag(user){
+		
+	}
+	function boardListTag(name, url) {
+		var tag = "<div class='alert alert-primary board' role='alert' id='";
+			tag += url;
+			tag += "'>";
+		tag += name;
+		tag += "</div>";
+		return tag;
+	}
+	$("#login").click(function(){
+		location.href = "/user/login";
+	})
 	
-	var boardList ;
-	$.ajax({
-		headers : {
-			"Accept" : "application/json",
-			"Content-Type" : "application/json"
-		},
-		type : "POST",
-		url : "/board/rest/getBoardList",
-		dataType : "text",
-		beforeSend : function() {
-		},
-		error : function(request, status, error) {
-			alert("에러발생함");
-		},
-		success : function(data) {
-			boardList = JSON.parse(data);
-			boardList.forEach(function(item,index,array){
-				$("a").append("<div class='alert alert-primary' role='alert' id='"+item.name+"' onclick='testt("+item.index+");'>"+item.name+"</div>");
-			});
-		},
-		complete : function() {
-		}
-	});	
-	
-});
+	$(document).on("click", ".board", function() {
+		location.href = "/board/" + $(this).attr("id") + "/";
+	});
 </script>
 
 </html>

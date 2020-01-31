@@ -5,22 +5,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 수정 화면</title>
+<title>게시판수정화면</title>
 </head>
 <body>
 <div class="container">
-<form id='boardInfomations'>
-<div class='input-group'>
-<input type="text" class="form-control" name='boardName'>12345
-<input type="text" class="form-control" name='boardDescription'>
-<button type="button" class="btn btn-outline-warning" onclick="testing(1)">Warning</button>
+<div class='row'>
+<div class="card col-sm">
+게시판명
 </div>
+<div class="card col-sm">
+게시판설명
+</div>
+<div class="card col-sm">
+url
+</div>
+</div>
+<hr>
+<form id='boardInfomations'>
 </form>
-<button type="button" class="btn btn-outline-primary btn-lg btn-block" style='max-width: 50%' id='addBoard'>Block level button</button>
-
-<button type="button" class="btn btn-outline-primary" id = 'tester'>프라머리</button>
-<button type="button" class="btn btn-outline-success">Success</button>
-
+<hr>
+<div class='text-right'>
+<button type="button" class="btn btn-outline-primary" id = 'submit'>변경사항적용</button>
+<button type="button" class="btn btn-outline-danger" id='reset'>변경사항 취소</button>
+</div>
 </div>
 
 </body>
@@ -36,58 +43,78 @@
 	src="/javascript/bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-
-var boardCount = $(".btn-outline-warning").length;
-
-function boardAppendTagMaker(index){
-	return "<div class='input-group'><input type='text' class='form-control' name='boardName'>54321<input type='text' class='form-control' name='boardDescription'><button type='button' class='btn btn-outline-warning' onclick='testing("+index+")'>Warning</button></div>";
-}
-
-function testing(input){
-	alert("호출됨"+input);
-};
-
-$("#addBoard").click(function(){
-	boardCount=$(".btn-outline-warning").length;
-	$("#boardInfomations").append(boardAppendTagMaker(boardCount));
+$.ajax({
+	headers : {
+		"Accept" : "application/json",
+		"Content-Type" : "application/json"
+	},
+	type : "POST",
+	url : "/board/rest/getBoardListForModify",
+	dataType : "text",
+	beforeSend : function() {
+	},
+	error : function(request, status, error) {
+		alert("기존 게시판 목록 로딩중 에러발생함");
+	},
+	success : function(data) {
+		var boardList = JSON.parse(data);
+		boardList.forEach(function(board){
+			$("#boardInfomations").append(boardInformation(board.name,board.description, board.url ));
+		});
+	}
 });
 
-$("#tester").click(function(){
-	var boardCounting = $(".btn-outline-warning").length;
-	var boardList = new Array();
-	for(var i=0; i<boardCounting; i++){
-		var board = new Object();
-		board.name = $("[name='boardName']:eq("+i+")").val();
-		board.description = $("[name='boardDescription']:eq("+i+")").val();
-		board.index = i;
-		boardList.push(board);
-	}
-	jsonData = JSON.stringify(boardList);
+function boardInformation(name, description, url){
+	var tag = "<div ondragenter='dragEnter(event)' ondragover='dragOver(event)' ondrop='drop(event)'><div class='input-group' id='";
+	tag += url;
+	tag +="' draggable='true' ondragstart='dragStarter(event)' >";
+	tag += "<input type='text' class='form-control' name='boardName' value ='";
+	tag += name;
+	tag += "'>";
+	tag += "<input type='text' class='form-control' name='boardDescription' value ='";
+	tag += description;
+	tag += "' >";
+	tag += "<input type='text' class='form-control' name='url' value ='";
+	tag += url;
+	tag += "' readonly>";
+	tag += "</div></div><hr>";
+	return tag
+}
 
+function dragStarter(event){
+	//alert("tlwkr!!");
+
+	event.dataTransfer.setData("txt", event.target.id);
+	//event.dataTransfer.effectAllowed = "move";
+}
+
+function dragEnter(event){
+	event.preventDefault();
+}
+
+
+function dragOver(event){
+	event.preventDefault();
+	 //event.dataTransfer.dropEffect = "move"
+}
+
+function drop(event){
+	event.preventDefault();
 	
-	$.ajax({
-		headers : {
-			"Accept" : "application/json",
-			"Content-Type" : "application/json"
-		},
-		type : "POST",
-		url : "/board/rest/getBoardInformations",
-		data : jsonData,
-		dataType : "text",
-		beforeSend : function() {
-		},
-		error : function(request, status, error) {
-			alert("에러발생함");
-		},
-		success : function(data) {
-			alert("success");
-			alert(data);
+	var data = event.dataTransfer.getData("txt");
+	var getTag = document.getElementById(data); 
+	var save = $(event.currentTarget);
+	alert(save.children().html());
+	$(event.currentTarget).empty();
+	
+    event.currentTarget.append(getTag);
+    event.currentTarget.append(save);
+    alert(save);
+	 event.stopPropagation();
+}
 
-		},
-		complete : function() {
-			alert("통신완료");
-		}
-	});
+$("#reset").click(function(){
+	location.href="/board/modifyBoard";
 });
 	
 </script>

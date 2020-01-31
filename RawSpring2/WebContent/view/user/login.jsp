@@ -47,7 +47,10 @@
 	src="/javascript/bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-
+	var urlFrom = '${url}';
+	if(urlFrom==null){
+		urlFrom="/";
+	}
 	$("#findEmail").click(function() {
 		location.href = "/user/findEmail";
 	});
@@ -95,11 +98,11 @@
 	$("#login").click(function() {
 		if (checkBeforeSubmit()) {
 
-			var testData = new Object();
-			testData.email = $("#email").val();
-			testData.password = $("#password").val();
+			var loginData = new Object();
+			loginData.email = $("#email").val();
+			loginData.password = $("#password").val();
 
-			var jsonData = JSON.stringify(testData);
+			var jsonData = JSON.stringify(loginData);
 
 			$.ajax({
 				headers : {
@@ -118,7 +121,7 @@
 				success : function(data) {
 					alert("success");
 					alert(data);
-
+					location.href=urlFrom;
 				},
 				complete : function() {
 					alert("통신완료");

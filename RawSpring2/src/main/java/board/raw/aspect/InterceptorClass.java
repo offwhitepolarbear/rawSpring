@@ -22,30 +22,29 @@ public class InterceptorClass implements HandlerInterceptor {
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse arg1, Object arg2, Exception arg3)
 			throws Exception {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object arg2, ModelAndView modelAndView)
 			throws Exception {
-		String tester = "/board/boardListTestr";
-		System.out.println("요청주소"+request.getRequestURI());
-		if(request.getRequestURI().equals(tester)) {
-			Map model = modelAndView.getModel();
-			model.put("boardList", boardService.getBoardList());
-			modelAndView.addAllObjects(model);
-			System.out.println("완료");
-		}
+	
 	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse arg1, Object arg2) throws Exception {
+		
 		HttpSession session = request.getSession();
 		System.out.println("세션에 유저 있나"+session.getAttribute("user"));
-		System.out.println(session.getId());
-		System.out.println("기존페이지 주소"+request.getHeader("REFERER"));
+		
+		String loginURL = "/user/login";
+		String requestFrom = request.getHeader("REFERER");
+		if(request.getRequestURI().equals(loginURL)) {
+			request.setAttribute("url",requestFrom); 
+		}
+		
+		System.out.println("기존 페이지 주소"+request.getHeader("REFERER"));
 		System.out.println("요청주소"+request.getRequestURL());
+		
 		return true;
 	}
 
