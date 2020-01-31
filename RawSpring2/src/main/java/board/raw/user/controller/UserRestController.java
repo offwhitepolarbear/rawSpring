@@ -5,8 +5,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -29,7 +31,7 @@ public class UserRestController {
 		User userFromDB = userService.getUser(user);
 		if( userFromDB != null) {
 			session.setAttribute("user", userFromDB);
-			loginResult = user.getEmail()+"님 환영합니다";
+			loginResult = userFromDB.getEmail()+"님 접속";
 		}
 		return loginResult;
 	}

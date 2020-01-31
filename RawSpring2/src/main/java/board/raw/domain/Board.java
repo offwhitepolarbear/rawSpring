@@ -6,6 +6,7 @@ public class Board {
 	String description;
 	int index;
 	char isActive;
+	String url;
 	
 	public int getId() {
 		return id;
@@ -31,17 +32,23 @@ public class Board {
 	public void setIndex(int index) {
 		this.index = index;
 	}
-	public char isActive() {
+	public char getIsActive() {
 		return isActive;
 	}
-	public void setActive(char isActive) {
+	public void setIsActive(char isActive) {
 		this.isActive = isActive;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 	@Override
 	public String toString() {
 		return "Board [id=" + id + ", name=" + name + ", description=" + description + ", index=" + index
-				+ ", isActive=" + isActive + "]";
+				+ ", isActive=" + isActive + ", url=" + url + "]";
 	}
 	
 }

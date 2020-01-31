@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,11 @@ public class BoardController {
 	@Qualifier ("boardServiceImpl")
 	BoardService boardService;
 	
+	@RequestMapping(value="addBoard",method = RequestMethod.GET)
+	public String addBoardView() {
+		return "/view/admin/addBoard.jsp";
+	}
+	
 	@RequestMapping(value="modifyBoard",method = RequestMethod.GET)
 	public String modifyBoardView() {
 		return "/view/admin/modifyBoard.jsp";
@@ -37,7 +43,11 @@ public class BoardController {
 		
 		return null;
 	}
-	
+	@RequestMapping(value="*")
+	public String boardFinder() {
+		System.out.println("게시판 잡아왔는가");
+		return null;
+	}
 	
 	public List<Board> getBoardList(){
 		return boardService.getBoardList();

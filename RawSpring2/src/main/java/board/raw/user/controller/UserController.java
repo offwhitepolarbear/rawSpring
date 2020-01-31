@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import board.raw.domain.User;
 import board.raw.user.service.UserService;
@@ -49,7 +51,7 @@ public class UserController {
 	
 	@RequestMapping(value="modifyUser", method=RequestMethod.POST)
 	public String modifyUser(HttpSession session, @ModelAttribute User user) {
-		System.out.println("¼öÁ¤¿äÃ»µé¾î¿È");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½");
 		User sessionUser = (User)session.getAttribute("user");
 		sessionUser.setEmail(user.getEmail());
 		sessionUser.setNickname(user.getNickname());
@@ -57,20 +59,20 @@ public class UserController {
 		sessionUser.setPhoneBody(user.getPhoneBody());
 		sessionUser.setPhoneTail(user.getPhoneTail());
 		System.out.print(sessionUser);
-		user.setProfileImg("ÀÌ¹ÌÁö¾÷µ¥ÀÌÆ®µÊ.jpg");
+		user.setProfileImg("ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½.jpg");
 		if(userService.updateUser(sessionUser)) {
-			System.out.println("¾÷µ¥ÀÌÆ® µÊ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½");
 			session.setAttribute("user", sessionUser);
 		}
 		else {
-			System.out.println("¾÷µ¥ÀÌÆ® ¾ÈµÊ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Èµï¿½");
 		}
 		return"/user/getUser";
 	}
 	
 	@RequestMapping (value="login", method=RequestMethod.GET)
-	public String loginView() {
-		System.out.println("·Î±×ÀÎ ºä ¿äÃ»");
+	public String loginView(@RequestParam(defaultValue = "/") String url, Model model) {
+		model.addAttribute("url", url);
 		return "/view/user/login.jsp";
 	}
 	
@@ -102,7 +104,6 @@ public class UserController {
 	@RequestMapping("logout")
 	public String logOut(HttpSession session) {
 		session.invalidate();
-		String pageAfterLogout = "/";
-		return pageAfterLogout;
+		return "redirect:/";
 	}
 }

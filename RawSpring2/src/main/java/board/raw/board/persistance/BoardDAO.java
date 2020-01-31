@@ -8,5 +8,7 @@ public interface BoardDAO {
 	
 	public List<Board> getBoardList();
 	
+	public List<Board> getBoardListForModify();
+	
 	public int addBoard(Board board);
 }
