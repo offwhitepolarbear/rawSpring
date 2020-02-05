@@ -12,9 +12,9 @@
 	<div class="container">
 		<div class="row">
 			<div class='col-2'>
-	<c:import url="/view/toolbar/sidebar.jsp" >
-	</c:import>
-	</div>
+				<c:import url="/view/toolbar/sidebar.jsp">
+				</c:import>
+			</div>
 			<div class="col-10">
 				<div id="p">한글 UTF8 초기 페이지임○馬</div>
 				<div class="alert alert-dark" role="alert" id="darkAlert">A

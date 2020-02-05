@@ -43,6 +43,7 @@ public class BoardController {
 		
 		return null;
 	}
+	
 	@RequestMapping(value="*")
 	public String boardFinder() {
 		System.out.println("게시판 잡아왔는가");

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,115 +7,113 @@
 <title>게시판수정화면</title>
 </head>
 <body>
-<div class="container">
-<div class='row'>
-<div class="card col-sm">
-게시판명
-</div>
-<div class="card col-sm">
-게시판설명
-</div>
-<div class="card col-sm">
-url
-</div>
-</div>
-<hr>
-<form id='boardInfomations'>
-</form>
-<hr>
-<div class='text-right'>
-<button type="button" class="btn btn-outline-primary" id = 'submit'>변경사항적용</button>
-<button type="button" class="btn btn-outline-danger" id='reset'>변경사항 취소</button>
-</div>
-</div>
+	<div class="container">
+		<div class='row'>
+			<div class="card col-sm">게시판명</div>
+			<div class="card col-sm">게시판설명</div>
+			<div class="card col-sm">url</div>
+		</div>
+		<hr>
+		<form id='boardInfomations'></form>
+		<hr>
+		<div class='text-right'>
+			<button type="button" class="btn btn-outline-primary" id='submit'>변경사항 적용</button>
+			<button type="button" class="btn btn-outline-danger" id='reset'>변경사항 취소</button>
+		</div>
+	</div>
 
 </body>
 
-<link rel="stylesheet"
-	href="/javascript/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/javascript/bootstrap/css/bootstrap.min.css" />
 
-<script type="text/javascript"
-	src="/javascript/jquery/jquery-3.4.1.min.js"></script>
-<script type="text/javascript"
-	src="/javascript/bootstrap/js/popper.min.js"></script>
-<script type="text/javascript"
-	src="/javascript/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/javascript/jquery/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/javascript/bootstrap/js/popper.min.js"></script>
+<script type="text/javascript" src="/javascript/bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-$.ajax({
-	headers : {
-		"Accept" : "application/json",
-		"Content-Type" : "application/json"
-	},
-	type : "POST",
-	url : "/board/rest/getBoardListForModify",
-	dataType : "text",
-	beforeSend : function() {
-	},
-	error : function(request, status, error) {
-		alert("기존 게시판 목록 로딩중 에러발생함");
-	},
-	success : function(data) {
-		var boardList = JSON.parse(data);
-		boardList.forEach(function(board){
-			$("#boardInfomations").append(boardInformation(board.name,board.description, board.url ));
-		});
+	// 개발하실 때 함수에 주석으로 어떤용도인지 간단하게라도 적어주세요
+	// 주석 없으면 나중에 협업 할 때나 개발한거 수정할때 힘들어요
+	// 회원가입 만들 때 비밀번호 암호화도 한번 고려해보세요 
+	$.ajax({
+		headers    : {
+			"Accept"       : "application/json",
+			"Content-Type" : "application/json"
+		},
+		type       : "POST",
+		url        : "/board/rest/getBoardListForModify",
+		dataType   : "text",
+		beforeSend : function() {
+		},
+		error      : function(request, status, error) {
+			alert("기존 게시판 목록 로딩중 에러발생함");
+		},
+		success    : function(data) {
+			var boardList = JSON.parse(data);
+			var index = 0;
+			boardList.forEach(function(board) {
+				$("#boardInfomations").append(boardInformation(index, board.name, board.description, board.url));
+			});
+		}
+	});
+
+	function boardInformation(index, name, description, url) {
+		var tag  = "<div id='";
+			tag += index;
+			tag += "' ";
+			tag += "ondragenter='dragEnter(event)' ondragover='dragOver(event)' ondrop='drop(event)'>";
+			tag += "<div class='input-group movefinder' id='";
+			tag += url;
+			tag += "' draggable='true' ondragstart='dragStarter(event)' >";
+			tag += "<input type='text' class='form-control' name='boardName' value ='";
+			tag += name;
+			tag += "'>";
+			tag += "<input type='text' class='form-control' name='boardDescription' value ='";
+			tag += description;
+			tag += "' >";
+			tag += "<input type='text' class='form-control' name='url' value ='";
+			tag += url;
+			tag += "' readonly>";
+			tag += "</div></div><hr>";
+			
+		return tag
 	}
-});
 
-function boardInformation(name, description, url){
-	var tag = "<div ondragenter='dragEnter(event)' ondragover='dragOver(event)' ondrop='drop(event)'><div class='input-group' id='";
-	tag += url;
-	tag +="' draggable='true' ondragstart='dragStarter(event)' >";
-	tag += "<input type='text' class='form-control' name='boardName' value ='";
-	tag += name;
-	tag += "'>";
-	tag += "<input type='text' class='form-control' name='boardDescription' value ='";
-	tag += description;
-	tag += "' >";
-	tag += "<input type='text' class='form-control' name='url' value ='";
-	tag += url;
-	tag += "' readonly>";
-	tag += "</div></div><hr>";
-	return tag
-}
+	function dragStarter(event) {
+		event.dataTransfer.setData("txt", event.target.id);
+		event.dataTransfer.setData("index", $(event.target).parent().attr('id'));
+		alert($(".movefinder").index($(event.target).parent()));
+		//event.dataTransfer.effectAllowed = "move";
+	}
 
-function dragStarter(event){
-	//alert("tlwkr!!");
+	function dragEnter(event) {
+		event.preventDefault();
+	}
 
-	event.dataTransfer.setData("txt", event.target.id);
-	//event.dataTransfer.effectAllowed = "move";
-}
+	function dragOver(event) {
+		event.preventDefault();
+		//event.dataTransfer.dropEffect = "move"
+	}
 
-function dragEnter(event){
-	event.preventDefault();
-}
+	function drop(event) {
+		event.preventDefault();
 
+		var data        = event.dataTransfer.getData("txt");
+		var returnIndex = event.dataTransfer.getData("index");
+		var getTag      = document.getElementById(data);
+		var save        = $(event.currentTarget).html();
+		$(event.currentTarget).empty();
+		$(event.currentTarget).html(getTag);
+		$("'#" + returnIndex + "'").html(save);
+		// alert(save);	
+		// event.currentTarget.append(getTag);
+		// // event.currentTarget.append(save);
+		// alert(save);
+		// event.stopPropagation();
+	}
 
-function dragOver(event){
-	event.preventDefault();
-	 //event.dataTransfer.dropEffect = "move"
-}
-
-function drop(event){
-	event.preventDefault();
-	
-	var data = event.dataTransfer.getData("txt");
-	var getTag = document.getElementById(data); 
-	var save = $(event.currentTarget);
-	alert(save.children().html());
-	$(event.currentTarget).empty();
-	
-    event.currentTarget.append(getTag);
-    event.currentTarget.append(save);
-    alert(save);
-	 event.stopPropagation();
-}
-
-$("#reset").click(function(){
-	location.href="/board/modifyBoard";
-});
-	
+	$("#reset").click(function() {
+		location.href = "/board/modifyBoard";
+	});
 </script>
 
 </html>

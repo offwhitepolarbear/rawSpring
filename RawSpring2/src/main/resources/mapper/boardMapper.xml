@@ -29,6 +29,8 @@
 	</insert>
 
 	<select id="getBoardList" resultMap="boardMap">
+		/* boardMapper.getBoardList 게시판 카테고리 조회 */
+		/* 쿼리문에 위에 주석처럼 경로랑 아이디 적어두면 나중에 로그 분석할 때나 다음에 수정해야할 때 편해요 */
 		SELECT
 			id, index, name,
 			description, is_active, url
@@ -42,12 +44,12 @@
 
 	<select id="getBoardListForModify" resultMap="boardMap">
 		SELECT
-		id, index, name,
-		description, is_active ,url
+			id, index, name,
+			description, is_active ,url
 		FROM
-		board
+			board
 		ORDER BY
-		index ASC
+			index ASC
 	</select>
 
 

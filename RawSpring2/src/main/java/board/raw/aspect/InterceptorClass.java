@@ -32,7 +32,7 @@ public class InterceptorClass implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse arg1, Object arg2) throws Exception {
-		
+		boolean accessAllowed = false;
 		HttpSession session = request.getSession();
 		System.out.println("세션에 유저 있나"+session.getAttribute("user"));
 		
@@ -45,7 +45,9 @@ public class InterceptorClass implements HandlerInterceptor {
 		System.out.println("기존 페이지 주소"+request.getHeader("REFERER"));
 		System.out.println("요청주소"+request.getRequestURL());
 		
-		return true;
+		accessAllowed = true;
+		
+		return accessAllowed;
 	}
 
 }

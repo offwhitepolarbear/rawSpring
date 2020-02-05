@@ -9,13 +9,14 @@
 </head>
 <body>
 
-<hr>
+	<hr>
 	<a id='userInfo'>
 		<div class="card">
 			<div class="card-body">
-			<div class='text-center' id='userInfoTarget'>
-				<button type="button" class="btn btn-lg btn-outline-success" id='login'>로그인</button>
-			</div>
+				<div class='text-center' id='userInfoTarget'>
+					<button type="button" class="btn btn-lg btn-outline-success"
+						id='login'>로그인</button>
+				</div>
 			</div>
 		</div>
 	</a>
@@ -35,32 +36,31 @@
 
 <script type="text/javascript">
 	$(function() {
-		$
-				.ajax({
-					headers : {
-						"Accept" : "application/json",
-						"Content-Type" : "application/json"
-					},
-					type : "POST",
-					url : "/user/rest/sessionUserCheck",
-					dataType : "text",
-					beforeSend : function() {
-					},
-					error : function(request, status, error) {
-						alert("에러발생함");
-					},
-					success : function(data) {
-						var user = JSON.parse(data);
-						if(user != null){
-							$("#userInfoTarget").html(
-									user.email + " : " + user.name + " : "
-											+ user.nickname);
-						}
-						
-					},
-					complete : function() {
-					}
-				});
+		$.ajax({
+			headers : {
+				"Accept" : "application/json",
+				"Content-Type" : "application/json"
+			},
+			type : "POST",
+			url : "/user/rest/sessionUserCheck",
+			dataType : "text",
+			beforeSend : function() {
+			},
+			error : function(request, status, error) {
+				alert("에러발생함");
+			},
+			success : function(data) {
+				var user = JSON.parse(data);
+				if (user != null) {
+					$("#userInfoTarget").html(
+							user.email + " : " + user.name + " : "
+									+ user.nickname);
+				}
+
+			},
+			complete : function() {
+			}
+		});
 	});
 	$(function() {
 
@@ -80,10 +80,8 @@
 			},
 			success : function(data) {
 				boardList = JSON.parse(data);
-				boardList
-						.forEach(function(board, index, array) {
-							$("#boardList").append(
-									boardListTag(board.name, board.url));
+				boardList.forEach(function(board, index, array) {
+							$("#boardList").append(boardListTag(board.name, board.url));
 						});
 			},
 			complete : function() {
@@ -91,21 +89,21 @@
 		});
 
 	});
-	function userTag(user){
-		
+	function userTag(user) {
+
 	}
 	function boardListTag(name, url) {
-		var tag = "<div class='alert alert-primary board' role='alert' id='";
+		var tag  = "<div class='alert alert-primary board' role='alert' id='";
 			tag += url;
 			tag += "'>";
-		tag += name;
-		tag += "</div>";
+			tag += name;
+			tag += "</div>";
 		return tag;
 	}
-	$("#login").click(function(){
+	$("#login").click(function() {
 		location.href = "/user/login";
 	})
-	
+
 	$(document).on("click", ".board", function() {
 		location.href = "/board/" + $(this).attr("id") + "/";
 	});
