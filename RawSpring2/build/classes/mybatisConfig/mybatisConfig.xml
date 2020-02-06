@@ -9,6 +9,8 @@
 	<typeAliases>
 		<typeAlias alias="User" type="board.raw.domain.User" />
 		<typeAlias alias="Board" type="board.raw.domain.Board" />
+		<typeAlias alias="Search" type="common.domain.Search" />
+		
 	</typeAliases>
 	
 	<mappers>

@@ -4,26 +4,51 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.carousel-item{
+width:100%;
+height:600px; 
+}
+</style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메인페이지입니다.</title>
 </head>
 <body>
 
 	<div class="container">
 		<div class="row">
 			<div class='col-2'>
-	<c:import url="/view/toolbar/sidebar.jsp" >
-	</c:import>
-	</div>
+				<c:import url="/view/toolbar/sidebar.jsp">
+				</c:import>
+			</div>
 			<div class="col-10">
-				<div id="p">한글 UTF8 초기 페이지임○馬</div>
-				<div class="alert alert-dark" role="alert" id="darkAlert">A
-					simple dark alert—check it out!</div>
-				<div class="alert alert-primary" role="alert">A simple primary
-					alert—check it out!</div>
-
-				<div class="alert alert-primary" role="alert">A simple primary
-					alert—check it out!</div>
+			
+			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/resources/main/mandarine.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/resources/main/strawberry.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="resources/main/banana.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+			
+			
+			대문입니다.
+			
+			
 			</div>
 		</div>
 	</div>
@@ -41,20 +66,8 @@
 <script type="text/javascript"
 	src="/javascript/bootstrap/js/bootstrap.min.js"></script>
 
-
 <script type="text/javascript">
-	$("#p").click(function() {
-		alert("111");
-	});
-
-	$(".alert").click(function() {
-		alert("파랭이");
-	});
-	$("#darkAlert").click(function() {
-		$(location).attr("href", "http://localhost:8080/test/test");
-	});
+	
 </script>
-
-
 
 </html>

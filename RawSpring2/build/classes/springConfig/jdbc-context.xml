@@ -7,23 +7,27 @@
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <property name="driverClassName" value="${db.driverClassName}"></property> 
-    <property name="url" value="${db.url}${db.database}"></property>
-    <property name="username" value="${db.user}"></property>
-    <property name="password" value="${db.password}"></property>
-</bean>
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="${db.driverClassName}"></property>
+		<property name="url" value="${db.url}${db.database}"></property>
+		<property name="username" value="${db.user}"></property>
+		<property name="password" value="${db.password}"></property>
+	</bean>
 
-<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-  <property name="dataSource" ref="dataSource" />
-  <property name="configLocation" value="classpath:mybatisConfig/mybatisConfig.xml"/>
-  <!--  
-  <property name="mapperLocations" value="classpath:mapper/**/*Mapper.xml"/>
-	-->
-</bean>
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation"
+			value="classpath:mybatisConfig/mybatisConfig.xml" />
+		<!-- <property name="mapperLocations" value="classpath:mapper/**/*Mapper.xml"/> -->
+	</bean>
 
-<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-    <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
-</bean>
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory"
+			ref="sqlSessionFactory" />
+	</bean>
 
 </beans>

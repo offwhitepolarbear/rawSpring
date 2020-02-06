@@ -17,15 +17,13 @@
 
 	
 	<div class="container">
-	<div class='row'>
-	<div class='col-2'>
-	<c:import url="/view/toolbar/sidebar.jsp" >
-	</c:import>
-	</div>
-	<div class='col-10'>
-		<p>
+	<hr>
+	<p>
 		<form id='registration' action='/user/addUser' method="post">
-			이메일 <input type="text" class="form-control" name='email'>
+			이메일 <div class='input-group'>
+				<input type="text" class="form-control" name='email'>@
+				<input type="text" class="form-control" name='emailTail'>
+				</div>
 			비밀번호 <input type="password" class="form-control" name='password'>
 			비밀번호확인 <input type="password" class="form-control" name='password2'>
 			이름 <input type="text" class="form-control" name='name'> 닉네임 <input
@@ -41,12 +39,11 @@
 					type="text" class="form-control" name='phoneTail'>
 			</div>
 		</form>
-		</p>
+		<hr>
 		<button type="button" class="btn btn-outline-primary btn-lg btn-block"
 			id='registrationButton'>가입</button>
 	</div>
 	
-	</div></div>
 </body>
 
 <link rel="stylesheet"
@@ -59,9 +56,8 @@
 <script type="text/javascript"
 	src="/javascript/bootstrap/js/bootstrap.min.js"></script>
 
-
-
 <script type="text/javascript">
+	//가입버튼 클릭시 회원가입 입력양식form을 user/addUser로 포스트 전송
 	$("#registrationButton").click(function() {
 		$("#registration").attr("action","/user/addUser").attr("method", "POST").submit();
 	});

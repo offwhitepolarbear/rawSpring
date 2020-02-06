@@ -4,6 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+.btn-lg{
+width: max;
+}
+.alert-primary{
+cursor: pointer;
+}
+</style>
 <meta charset="UTF-8">
 <title></title>
 </head>

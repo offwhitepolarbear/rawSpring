@@ -1,11 +1,14 @@
 package board.raw.user.persistance;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import board.raw.domain.User;
+import common.domain.Search;
 
 @Repository
 public class UserDAOImpl implements UserDAO{
@@ -49,6 +52,16 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public String findPassword(User user) {
 		return sqlSession.selectOne("userMapper.findPassword", user);
+	}
+
+	@Override
+	public int countUsersBySearchCondition(Search search) {
+		return sqlSession.selectOne("userMapper.countUser", search);
+	}
+
+	@Override
+	public List<User> listUser(Search search) {
+		return sqlSession.selectList("userMapper.getUserList", search);
 	}
 
 }
