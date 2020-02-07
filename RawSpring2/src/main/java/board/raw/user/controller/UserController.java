@@ -1,5 +1,8 @@
 package board.raw.user.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import board.raw.domain.User;
 import board.raw.user.service.UserService;
+import common.domain.Page;
 import common.domain.Search;
 
 @Controller
@@ -22,10 +26,6 @@ public class UserController {
 
 	@Value("#{pageProperties['contentSizePerPage']}")
 	int contentSizePerPage;
-	
-	@Value("#{pageProperties['pageNavigationSize']}")
-	int pageNavigationSize;
-		
 	
 	@Autowired
 	@Qualifier("userServiceImpl")
@@ -114,8 +114,11 @@ public class UserController {
 	}
 	
 	@RequestMapping("getUserList")
-	public String getUserList() {
-		userService.getUserList(new Search());
-		return "";
+	public String getUserList(@ModelAttribute Search search, Model model) {
+		Map<String, Object> userMap = userService.getUserList(search);
+		model.addAttribute("search", search);
+		model.addAttribute("userList", (List)userMap.get("userList"));
+		model.addAttribute("page", (Page)userMap.get("page"));
+		return "/view/user/getUserList.jsp";
 	}
 }

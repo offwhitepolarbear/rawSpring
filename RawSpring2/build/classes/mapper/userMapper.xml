@@ -124,8 +124,19 @@
 	</select>
 
 	<select id="getUserList" parameterType="Search" resultMap="userMap">
-		SELECT
-			id,nickname,name,email,phone_head,phone_tail,profile_img ,register_time
+		SELECT * FROM
+		(SELECT
+			ROW_NUMBER () OVER (
+				<if test="orderBy == null">
+					ORDER BY register_time DESC
+				</if>
+				<if test="orderBy != null">
+					ORDER BY #{orderBy}
+				</if>
+			)
+			,id, nickname, name, email
+			,phone_head, phone_body, phone_tail
+			,profile_img, register_time, user_role
 		FROM
 			users
 		<where>
@@ -136,12 +147,10 @@
 				</if>
 			</if>
 		</where>
-		<if test="orderBy == null">
-			ORDER BY register_time DESC
-		</if>
-		<if test="orderBy != null">
-			ORDER BY #{orderBy}
-		</if>
+		) originalsql
+		WHERE
+		ROW_NUMBER BETWEEN
+		#{firstRow} AND #{lastRow}
 	</select>
 
 </mapper>

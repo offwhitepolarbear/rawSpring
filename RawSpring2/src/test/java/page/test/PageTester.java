@@ -7,6 +7,7 @@ import common.domain.Page;
 public class PageTester {
 	@Test
 	public void testPage() {
+		
 		int recentPage = 39;
 		int pageNavigationSize = 10;
 		int contentSizePerPage = 20;

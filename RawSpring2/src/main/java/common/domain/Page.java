@@ -5,17 +5,15 @@ public class Page {
 	private final int recentPage;
 	private final int lastPage;
 	private final int totalSize;
-	private final int contentSizePerPage;
 	private final int pageNavigationSize;
 	private final int firstPageIndex;
 	private final int lastPageIndex;
 	
 	private Page(Builder builder){
 		this.recentPage = builder.recentPage;
-		this.contentSizePerPage = builder.contentSizePerPage;
 		this.pageNavigationSize = builder.pageNavigationSize;
 		this.totalSize = builder.totalSize;
-		this.lastPage = (totalSize-1)/contentSizePerPage +1;
+		this.lastPage = (totalSize-1)/builder.contentSizePerPage +1;
 		this.firstPageIndex = (recentPage-1)/pageNavigationSize*pageNavigationSize+1;
 		this.lastPageIndex = firstPageIndex+pageNavigationSize-1;
 	}
@@ -60,10 +58,6 @@ public class Page {
 		return totalSize;
 	}
 
-	public int getContentSizePerPage() {
-		return contentSizePerPage;
-	}
-
 	public int getPageNavigationSize() {
 		return pageNavigationSize;
 	}
@@ -79,7 +73,7 @@ public class Page {
 	@Override
 	public String toString() {
 		return "Page [recentPage=" + recentPage + ", lastPage=" + lastPage + ", totalSize=" + totalSize
-				+ ", contentSizePerPage=" + contentSizePerPage + ", pageNavigationSize=" + pageNavigationSize
+				+ ", pageNavigationSize=" + pageNavigationSize
 				+ ", firstPageIndex=" + firstPageIndex + ", lastPageIndex=" + lastPageIndex + "]";
 	}
 	
