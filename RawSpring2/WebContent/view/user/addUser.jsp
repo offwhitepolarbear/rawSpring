@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="/javascript/bootstrap/css/bootstrap.min.css" />
 <style type="text/css">
 #phoneNumber {
 	width: 100%;
@@ -46,8 +48,7 @@
 	
 </body>
 
-<link rel="stylesheet"
-	href="/javascript/bootstrap/css/bootstrap.min.css" />
+
 
 <script type="text/javascript"
 	src="/javascript/jquery/jquery-3.4.1.min.js"></script>

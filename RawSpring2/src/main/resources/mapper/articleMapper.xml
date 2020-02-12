@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="articleMapper">
+	<resultMap type="Article" id="articleMap">
+		<result property="id" column="id" jdbcType="INTEGER" />
+		<result property="targetBoardId" column="board_id"
+			jdbcType="INTEGER" />
+			<result property="boardName" column="name" jdbcType="VARCHAR" />
+		<result property="originArticleId" column="origin_article_id"
+			jdbcType="INTEGER" />
+		<result property="targetArticleId"
+			column="direct_reference_article_id" jdbcType="INTEGER" />
+		<result property="depth" column="depth" jdbcType="INTEGER" />
+		<result property="title" column="title" jdbcType="VARCHAR" />
+		<result property="content" column="content" jdbcType="VARCHAR" />
+		<result property="userId" column="users_id" jdbcType="INTEGER" />
+		<result property="userNickname" column="nickname"
+			jdbcType="VARCHAR" />
+		<result property="registrationTime" column="register_time"
+			jdbcType="TIMESTAMP" />
+		<result property="isActive" column="is_active" jdbcType="CHAR" />
+		<result property="like" column="like" jdbcType="INTEGER" />
+		<result property="disLike" column="dislike" jdbcType="INTEGER" />
+	</resultMap>
+
+	<insert id="addArticle" parameterType="Article">
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			SELECT NEXTVAL('article_id_seq')
+		</selectKey>
+	INSERT INTO
+		article
+		(id, board_id, users_id
+		, title, content
+		,origin_article_id, direct_reference_article_id, depth
+		,register_time, modify_time, is_active)
+	VALUES
+		(#{id}, #{targetBoardId}, #{userId}
+		, #{title}, #{content}
+		, #{originArticleId}, #{targetArticleId}, #{depth}
+		,NOW(), NOW(), 'a');
+	</insert>
+	
+	<select id="getArticle" parameterType="int" resultMap="articleMap">
+	SELECT
+		b.url, b.name
+		, a.id, a.title, a.content, a.register_time
+		, u.id, u.nickname
+	FROM
+		article a, users u, board b
+	WHERE
+		a.users_id = u.id
+	AND
+		a.board_id = b.id
+	AND
+		a.is_active='a'
+	AND
+		a.id = #{value}
+	</select>
+	
+	<select id="getArticleList" parameterType="ArticleSearch" resultMap="articleMap">
+	SELECT
+		b.url, b.name
+		, a.id, a.title, a.content, a.register_time
+		, u.id, u.nickname
+	FROM
+		article a, users u, board b
+	WHERE
+		a.users_id = u.id
+	AND
+		a.board_id = b.id
+	AND
+		a.is_active='a'
+	AND
+		a.board_id = (SELECT id FROM board WHERE url = #{boardURL})
+	</select>
+
+</mapper>

@@ -11,4 +11,6 @@ public interface BoardDAO {
 	public List<Board> getBoardListForModify();
 	
 	public int addBoard(Board board);
+	
+	public int getBoardIdByURL(String url);
 }

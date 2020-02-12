@@ -12,4 +12,6 @@ public interface BoardService {
 	
 	public int addBoard(Board board);
 
+	public int getBoardIdByURL(String url);
+	
 }

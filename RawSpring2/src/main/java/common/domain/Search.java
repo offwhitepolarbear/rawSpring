@@ -1,5 +1,7 @@
 package common.domain;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public class Search {
 
 	private String searchCondition;
@@ -8,8 +10,9 @@ public class Search {
 	
 	private int currentPage = 1;
 	
+	//@value 해서 가져오고 싶은데 따로 바인딩이 안되어서 그런지 못받아 오는 거 같음 어떻게 방법이 없나
 	//@Value("#{pageProperties['contentSizePerPage']}")
-	int contentsPerPage = 1;
+	private int contentsPerPage = 10;
 	
 	public String getSearchCondition() {
 		return searchCondition;

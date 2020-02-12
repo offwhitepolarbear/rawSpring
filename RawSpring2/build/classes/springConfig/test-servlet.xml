@@ -48,7 +48,14 @@
 	</mvc:annotation-driven>
 
 	<context:component-scan
-		base-package="board.raw.controller, board.raw.user, board.raw.board.controller, board.raw.board, board.raw.aspect" />
+		base-package="board.raw.controller
+		, board.raw.user
+		, board.raw.board
+		, board.raw.article
+		, board.raw.reply
+		, board.raw.domain
+		, common.domain
+		, board.raw.aspect" />
 
 	<mvc:resources mapping="/favicon.ico"
 		location="/favicon/favicon.ico" />

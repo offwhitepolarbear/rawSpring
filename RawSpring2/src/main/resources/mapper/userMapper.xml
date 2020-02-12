@@ -21,91 +21,91 @@
 
 	<insert id="addUser" parameterType="User">
 		<selectKey resultType="int" keyProperty="id" order="BEFORE">
-			select
-			nextval('users_id_seq')
+			SELECT
+			NEXTVAL ('users_id_seq')
 		</selectKey>
 		INSERT INTO
-		users
-		(id,email,password,name,nickname,
-		phone_head,phone_body,phone_tail,
-		register_time,profile_img,user_role)
+			users
+			(id, email, password
+			, name, nickname
+			, phone_head, phone_body, phone_tail,
+			register_time,profile_img,user_role)
 		VALUES
-		(#{id},#{email},#{password},#{name},#{nickname},
-		#{phoneHead},#{phoneBody},#{phoneTail},
-		NOW(),#{profileImg},'u')
+			(#{id},#{email},#{password}
+			,#{name},#{nickname}
+			, #{phoneHead}, #{phoneBody}, #{phoneTail},
+			NOW(),#{profileImg},'u')
 	</insert>
 
 	<select id="getPasswordByEmail" resultType="String">
 		SELECT
-		password
+			password
 		FROM
-		users
+			users
 		WHERE
-		email=#{email}
+			email = #{email}
 	</select>
 
 	<select id="getUserForLogin" resultMap="userMap">
 		SELECT
-		id,email,password,name,nickname,
-		phone_head,phone_body,phone_tail,
-		register_time,profile_img,user_role
+			id, email, password
+			, name, nickname
+			, phone_head, phone_body, phone_tail
+			, register_time, profile_img, user_role
 		FROM
-		users
+			users
 		WHERE
-		email=#{email}
+			email = #{email}
 		AND
-		password=#{password}
+			password = #{password}
 	</select>
 
 	<select id="findEmail" parameterType="User" resultType="String">
 		SELECT
-		email
+			email
 		FROM
-		users
+			users
 		WHERE
-		name=#{name}
+			name = #{name}
 		AND
-		phone_head=#{phoneHead}
+			phone_head = #{phoneHead}
 		AND
-		phone_body=#{phoneBody}
+			phone_body = #{phoneBody}
 		AND
-		phone_tail=#{phoneTail}
+			phone_tail = #{phoneTail}
 	</select>
 
 	<select id="findPassword" parameterType="User"
 		resultType="String">
 		SELECT
-		password
+			password
 		FROM
-		users
+			users
 		WHERE
-		email = #{email}
+			email = #{email}
 		AND
-		name =
-		#{name}
+			name = #{name}
 		AND
-		phone_head = #{phoneHead}
+			phone_head = #{phoneHead}
 		AND
-		phone_body = #{phoneBody}
+			phone_body = #{phoneBody}
 		AND
-		phone_tail = #{phoneTail}
+			phone_tail = #{phoneTail}
 	</select>
 
 	<update id="updateUser" parameterType="User">
 		UPDATE
-		users
+			users
 		SET
-		email =
-		#{email},
-		name = #{name},
-		nickname = #{nickname},
-		phone_head =
-		#{phoneHead},
-		phone_body = #{phoneBody},
-		phone_tail = #{phoneTail},
-		profile_img = #{profileImg}
+			email =	#{email},
+			name = #{name},
+			nickname = #{nickname},
+			phone_head = #{phoneHead},
+			phone_body = #{phoneBody},
+			phone_tail = #{phoneTail},
+			profile_img = #{profileImg}
 		WHERE
-		id=#{id}
+			id = #{id}
 	</update>
 
 	<select id="countUser" parameterType="Search" resultType="int">

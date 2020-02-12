@@ -23,14 +23,17 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int addBoard(Board board) {
-		// TODO Auto-generated method stub
 		return boardDAOImpl.addBoard(board);
 	}
 
 	@Override
 	public List<Board> getBoardListForModify() {
-		// TODO Auto-generated method stub
 		return boardDAOImpl.getBoardListForModify();
+	}
+
+	@Override
+	public int getBoardIdByURL(String url) {
+		return boardDAOImpl.getBoardIdByURL(url);
 	}
 
 }

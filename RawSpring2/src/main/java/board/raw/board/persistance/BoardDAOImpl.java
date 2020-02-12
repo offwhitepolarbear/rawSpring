@@ -31,4 +31,9 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectList("boardMapper.getBoardListForModify");
 	}
 
+	@Override
+	public int getBoardIdByURL(String url) {
+		return sqlSession.selectOne("boardMapper.getBoardIdByURL", url);
+	}
+
 }

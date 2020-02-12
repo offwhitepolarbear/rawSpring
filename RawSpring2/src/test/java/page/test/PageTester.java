@@ -1,5 +1,7 @@
 package page.test;
 
+import java.util.Date;
+
 import org.junit.Test;
 
 import common.domain.Page;
@@ -18,7 +20,8 @@ public class PageTester {
 				.contentSizePerPage(contentSizePerPage)
 				.totalSize(totalSize)
 				.build();
-		
+		Date date = new Date();
+		System.out.println(date);
 		System.out.println(page.getFirstPageIndex());
 		System.out.println(page.getLastPageIndex());
 

@@ -98,6 +98,7 @@
 			lastPageIndex = lastPage;
 		}
 		
+		//개별 페이지 태그 다른 펑션 참조해서 페이지 태그 세트를 만드는 부분
 		function pageSetMaker(firstPage,lastPage,recentPage,totalPage){
 			var pageSet = '';
 			var pageBeforeFirst = 0;
@@ -126,6 +127,7 @@
 			$("#pagingNavigator").append(pageSet);
 		}	
 						
+		//일반 페이지 태그 만드는 부분
 		function eachPageTagMaker(index, isActive){
 			var pageTag = "<li class='page-item ";
 			if(isActive!=null){
@@ -139,6 +141,7 @@
 			return pageTag
 		}
 		
+		//앞으로 뒤로 페이지 만드는 기능
 		function specialPageTagMaker(index, direction){
 			var pageTag = "<li class='page-item ";
 			if(index==0){

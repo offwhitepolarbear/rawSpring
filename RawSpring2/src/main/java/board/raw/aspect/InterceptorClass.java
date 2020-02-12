@@ -1,17 +1,14 @@
 package board.raw.aspect;
 
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import board.raw.board.controller.BoardController;
 import board.raw.board.service.BoardService;
 
 public class InterceptorClass implements HandlerInterceptor {

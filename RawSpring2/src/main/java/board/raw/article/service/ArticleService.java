@@ -1,17 +1,18 @@
 package board.raw.article.service;
 
-import java.util.List;
+import java.util.Map;
 
 import board.raw.domain.Article;
+import common.domain.ArticleSearch;
 
 public interface ArticleService {
-	public int addArticle(); 
+	public int addArticle(Article article); 
 	
-	public int updateArticle();
+	public int updateArticle(Article article);
 	
-	public int deleteArticle();
+	public int deleteArticle(Article article);
 	
-	public Article getArticle();
+	public Article getArticle(int articleId);
 	
-	public List<Article> getArticleList();
+	public Map<String,Object> getArticleList(ArticleSearch articleSearch);
 }

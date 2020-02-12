@@ -9,13 +9,17 @@
 	<typeAliases>
 		<typeAlias alias="User" type="board.raw.domain.User" />
 		<typeAlias alias="Board" type="board.raw.domain.Board" />
+		<typeAlias alias="Article" type="board.raw.domain.Article" />
+		<typeAlias alias="Reply" type="board.raw.domain.Reply" />
 		<typeAlias alias="Search" type="common.domain.Search" />
-		
+		<typeAlias alias="ArticleSearch" type="common.domain.ArticleSearch" />
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/userMapper.xml"/>
 		<mapper resource="mapper/boardMapper.xml"/>
+		<mapper resource="mapper/articleMapper.xml"/>
+		<mapper resource="mapper/replyMapper.xml"/>
 	</mappers>
 
 </configuration>

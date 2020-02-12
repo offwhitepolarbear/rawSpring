@@ -42,13 +42,21 @@
 
 	<select id="getBoardListForModify" resultMap="boardMap">
 		SELECT
-		id, index, name,
-		description, is_active ,url
+			id, index, name,
+			description, is_active ,url
 		FROM
-		board
+			board
 		ORDER BY
-		index ASC
+			index ASC
 	</select>
-
+	
+	<select id='getBoardIdByURL' parameterType="String" resultType="int">
+		SELECT
+			id
+		FROM
+			board
+		WHERE
+			url = #{value}
+	</select>
 
 </mapper>

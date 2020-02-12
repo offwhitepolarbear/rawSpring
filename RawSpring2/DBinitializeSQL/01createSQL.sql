@@ -35,6 +35,11 @@ register_time TIMESTAMPTZ NOT NULL,
 modify_time TIMESTAMPTZ
 );
 
+ALTER TABLE article ADD COLUMN origin_article_id INTEGER REFERENCES article (id);
+ALTER TABLE article ADD COLUMN direct_reference_article_id INTEGER REFERENCES article (id);
+ALTER TABLE article ALTER COLUMN depth INTEGER CHECK (depth >-1, DEFAULT = 0);
+ALTER TABLE article ALTER COLUMN depth SET DEFAULT 0;
+
 CREATE TABLE
 reply(
 id SERIAL PRIMARY KEY,
@@ -45,3 +50,11 @@ is_active CHAR(1) NOT NULL,
 register_time TIMESTAMPTZ NOT NULL,
 modify_time TIMESTAMPTZ
 );
+
+CREATE TABLE
+recommendation
+(id SERIAL PRIMARY KEY,
+target_type CHAR(1) NOT NULL,
+target_id INTEGER NOT NULL,
+user_id INTEGER REFERENCES users(id) NOT NULL,
+is_positive CHAR(1) NOT NULL);

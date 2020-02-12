@@ -4,17 +4,17 @@ import java.util.Date;
 
 public class User {
 	
-	int id;
-	String email;
-	String password;
-	String name;
-	String nickname;
-	int phoneHead;
-	int phoneBody;
-	int phoneTail;
-	String profileImg;
-	Date registerTime;
-	char userRole;
+	private int id;
+	private String email;
+	private String password;
+	private String name;
+	private String nickname;
+	private int phoneHead;
+	private int phoneBody;
+	private int phoneTail;
+	private String profileImg;
+	private Date registerTime;
+	private char userRole;
 	
 	public int getId() {
 		return id;
