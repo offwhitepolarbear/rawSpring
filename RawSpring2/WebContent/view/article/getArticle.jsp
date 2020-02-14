@@ -6,6 +6,14 @@
 <link rel="stylesheet"
 	href="/javascript/bootstrap/css/bootstrap.min.css" />
 <meta charset="UTF-8">
+<style type="text/css">
+/*
+#replys{
+width: 50%;
+align: center;
+}
+*/
+</style>
 <title>게시글 열람화면</title>
 </head>
 <body>
@@ -20,7 +28,13 @@
 	<div class='card' id='content'>
 		<br/><br/><br/><br/>
 	</div>
-	댓글창 필요
+	
+	<p>
+	
+	<div id='replys'>
+		
+	</div>
+	<p>
 	<div class="input-group">
   <input type="text" class="form-control" placeholder="댓글을 입력해주세요" id='replyContent'>
   <div class="input-group-append">
@@ -66,10 +80,45 @@ $(function(){
 		complete : function() {
 		}
 	});
+	
+	$.ajax({
+		headers : {
+			"Accept" : "application/json",
+			"Content-Type" : "application/json"
+		},
+		type : "POST",
+		url : "/reply/rest/getReplys/"+articleId,
+		//data : jsonData,
+		dataType : "text",
+		beforeSend : function() {
+		},
+		error : function(request, status, error) {
+			alert("에러발생함");
+		},
+		success : function(data) {
+			data = JSON.parse(data);
+			
+			data.forEach(replyParsing);
+		},
+		complete : function() {
+		}
+	});
+	
 });
 
+function replyParsing(item, index){
+	var replyTag = "<div class='card'><div class='card-body'><h5 class='card-title'>";
+	replyTag += item.userNickname;
+	replyTag += "</h5><h6 class='card-subtitle text-right'>";
+	replyTag += new Date(item.registrationTime);
+	replyTag += "</h6><p class='card-text'>";
+	replyTag += item.content;
+	replyTag += "</p></div></div>";
+	$("#replys").append(replyTag);
+	
+};
+
 $("#replySubmit").click(function(){
-	alert("댓글 달아줘");
 	
 	var replyData = new Object();
 	replyData.originId = articleId;
@@ -94,6 +143,7 @@ $("#replySubmit").click(function(){
 		success : function(data) {
 		},
 		complete : function() {
+			location.href="/article/"+articleId;
 		}
 	});
 	

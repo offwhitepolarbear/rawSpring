@@ -51,12 +51,10 @@ public class BoardController {
 		
 		return null;
 	}
-	
+		
 	@RequestMapping("{boardURL}")
 	public String modifyBoard(@PathVariable String boardURL) {
 		return "/view/board/getBoard.jsp";
 	}
-
-	
 		
 }

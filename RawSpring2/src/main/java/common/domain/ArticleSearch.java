@@ -46,11 +46,18 @@ public class ArticleSearch {
 		this.contentsPerPage = contentsPerPage;
 	}
 	
+	public int getFirstRow() {
+		return (this.currentPage - 1) * this.contentsPerPage + 1;
+	}
+
+	public int getLastRow() {
+		return (this.currentPage) * (this.contentsPerPage);
+	}
+	
 	@Override
 	public String toString() {
 		return "ArticleSearch [searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword + ", orderBy="
 				+ orderBy + ", currentPage=" + currentPage + ", contentsPerPage=" + contentsPerPage + "]";
 	}
-	
 	
 }

@@ -17,7 +17,6 @@
 </head>
 <body>
 
-	
 	<div class="container">
 	<hr>
 	<p>
@@ -48,8 +47,6 @@
 	
 </body>
 
-
-
 <script type="text/javascript"
 	src="/javascript/jquery/jquery-3.4.1.min.js"></script>
 <script type="text/javascript"
@@ -60,6 +57,8 @@
 <script type="text/javascript">
 	//가입버튼 클릭시 회원가입 입력양식form을 user/addUser로 포스트 전송
 	$("#registrationButton").click(function() {
+		var email = $("#email").val();
+		$("#email").val();
 		$("#registration").attr("action","/user/addUser").attr("method", "POST").submit();
 	});
 </script>

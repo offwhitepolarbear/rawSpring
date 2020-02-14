@@ -27,9 +27,8 @@ cursor: pointer;
 		<div class='col-10'>
 			<hr>
 			<div class='card'>
-			<div>게시판제목</div>
-			<div>게시판 설명 1줄</div>
-			<div>게시판 설명 2줄</div>
+			<div class='boardName'>게시판제목</div>
+			<div class='boardDescription'>게시판 설명 1줄</div>
 			</div>
 			<br/>
 			<div class='card'>
@@ -48,10 +47,12 @@ cursor: pointer;
 			  </tbody>
 			</table>
 			</div>
+			<hr>
+			<button type="button" class="btn btn-outline-success" id='writeArticle'>글쓰기</button>
 		</div>
 	
 	</div>
-
+	
 </div>
 <script type="text/javascript"
 		src="/javascript/jquery/jquery-3.4.1.min.js"></script>
@@ -93,10 +94,10 @@ $(function(){
 });
 
 function articleParsing(item, index){
-	
+	$(".boardName").text(item.boardName);
 	var articleTag = "<tr>";
 	articleTag += "<td>";
-	articleTag += index;
+	articleTag += item.id;
 	articleTag += "</td>"; 
 	articleTag += "<td class='title' id='"+item.id+"'>";
 	articleTag += item.title;
@@ -115,9 +116,14 @@ function articleParsing(item, index){
 	$(".articleInfo").append(articleTag);
    
 }
+
 $(document).on("click", ".title", function() {
 	location.href= "/article/"+$(this).attr('id');
-})
+});
+$("#writeArticle").click(function(){
+	location.href= "/article/addArticleView/";
+});
+
 </script>
 </body>
 </html>

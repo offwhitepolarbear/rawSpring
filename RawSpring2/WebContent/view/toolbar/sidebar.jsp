@@ -60,6 +60,10 @@ cursor: pointer;
 							$("#userInfoTarget").html(
 									user.email + " : " + user.name + " : "
 											+ user.nickname);
+							var buttonTag = "<button type='button' class='btn btn-outline-secondary' id='logoutButton'>로그아웃</button>"
+							
+							$("#userInfoTarget").append(buttonTag);
+							
 						}
 						
 					},
@@ -115,6 +119,11 @@ cursor: pointer;
 	$(document).on("click", ".board", function() {
 		location.href = "/board/" + $(this).attr("id");
 	});
+	
+	$(document).on("click", "#logoutButton", function() {
+		location.href = "/user/logout";
+	});
+	
 </script>
 
 </html>

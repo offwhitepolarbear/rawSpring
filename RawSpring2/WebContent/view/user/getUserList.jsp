@@ -71,7 +71,6 @@
   <ul class="pagination justify-content-center" id='pagingNavigator'>
   </ul>
 </nav>
-	
 
 	<!-- script source -->
 	<script type="text/javascript"
@@ -107,7 +106,7 @@
 				pageBeforeFirst = firstPage-1;
 			}
 			
-			pageSet += specialPageTagMaker(pageBeforeFirst,'앞');
+			pageSet += specialPageTagMaker(pageBeforeFirst,'<');
 			
 			for(var i=firstPage;i<=lastPage;i++){
 				if(i!=recentPage){
@@ -122,7 +121,7 @@
 			if(lastPage<totalPage){
 				pageAfterLast = lastPage+1;
 			}
-			pageSet += specialPageTagMaker(pageAfterLast,'뒤');
+			pageSet += specialPageTagMaker(pageAfterLast,'>');
 			
 			$("#pagingNavigator").append(pageSet);
 		}	

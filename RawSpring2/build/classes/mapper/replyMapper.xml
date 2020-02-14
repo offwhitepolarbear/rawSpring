@@ -10,7 +10,8 @@
 		<result property="originId" 		column="article_id" 	jdbcType="INTEGER" />
 		<result property="targetType" 		column="target_type" 	jdbcType="INTEGER" />
 		<result property="targetId" 		column="target_id"		jdbcType="INTEGER" />
-		<result property="content" 			column="depth" 			jdbcType="INTEGER" />
+		<result property="content" 			column="content" 		jdbcType="VARCHAR" />
+		<result property="depth" 			column="depth" 			jdbcType="INTEGER" />
 		<result property="userId"			column="users_id"		jdbcType="INTEGER" />
 		<result property="userNickname" 	column="nickname" 		jdbcType="VARCHAR" />
 		<result property="registrationTime" column="register_time" 	jdbcType="TIMESTAMP" />
@@ -37,14 +38,16 @@
 	
 	</insert>
 	
-	<select id="getReplyList">
+	<select id="getReplyList" parameterType="int" resultMap="replyMap">
 	SELECT
-		content,register_time
+		r.content, r.register_time, u.nickname
 	FROM
-		reply
+		reply r, users u
 	WHERE
-		article_id = #{originId}
-	
+		r.users_id = u.id
+	AND
+		article_id = #{value}
+	ORDER BY r.register_time ASC
 	</select>
 
 </mapper>

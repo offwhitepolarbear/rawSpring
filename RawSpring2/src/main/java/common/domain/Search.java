@@ -1,7 +1,5 @@
 package common.domain;
 
-import org.springframework.beans.factory.annotation.Value;
-
 public class Search {
 
 	private String searchCondition;

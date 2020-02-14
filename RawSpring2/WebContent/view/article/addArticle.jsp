@@ -22,7 +22,7 @@
 		<form id='articleForm' action="/article/addArticle" method="post">
 		<div class='input-group'>
 			  <select class="custom-select col-3" name='targetBoardId' id="boardId">
-    			<option selected>게시판을 선택</option>
+    			<option>게시판을 선택</option>
   				</select>
 			<div class='text-center input-group-append'>
 			<input type="text" name='title' placeholder="제목을 입력해주세요">
@@ -45,6 +45,9 @@
 	<script type="text/javascript"
 		src="/javascript/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+var cutPoint = document.referrer.indexOf('board')+6;
+var fromWhere = document.referrer.substring(cutPoint);
+
 $(function(){
 	$.ajax({
 		headers : {
@@ -74,7 +77,11 @@ $(function(){
 function boardOptionSetter(board){
 	var optionTag = "<option value='";
 	optionTag += board.id;
-	optionTag += "'>";
+	optionTag += "' ";
+	if(board.url==fromWhere){
+		optionTag += 'selected ';
+	}
+	optionTag += ">";
 	optionTag += board.name;
 	optionTag += "</option>";
 	$("#boardId").append(optionTag);
@@ -83,6 +90,8 @@ function boardOptionSetter(board){
 $("#registration").click(function(){
 	$("#articleForm").attr('action',"/article/addArticle").attr("method","post").submit();	
 });
+
+alert($("#boardId").val());
 </script>
 </body>
 </html>

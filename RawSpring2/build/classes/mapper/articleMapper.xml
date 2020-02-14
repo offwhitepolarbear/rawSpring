@@ -60,6 +60,13 @@
 		a.id = #{value}
 	</select>
 	
+	<select id="getArticleCount" parameterType="ArticleSearch" resultType="int">
+	SELECT
+		count(a.id)
+	FROM
+		article	a
+	</select>
+	
 	<select id="getArticleList" parameterType="ArticleSearch" resultMap="articleMap">
 	SELECT
 		b.url, b.name
@@ -73,8 +80,11 @@
 		a.board_id = b.id
 	AND
 		a.is_active='a'
+	<if test="boardURL != 'all'">
 	AND
 		a.board_id = (SELECT id FROM board WHERE url = #{boardURL})
+	</if>
+	ORDER BY a.register_time DESC
 	</select>
 
 </mapper>
