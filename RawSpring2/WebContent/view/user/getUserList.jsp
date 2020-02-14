@@ -57,8 +57,9 @@
 						<td>0${user.phoneHead} - ${user.phoneBody} -
 							${user.phoneTail}</td>
 						<td><fmt:formatDate value="${user.registerTime}"
-								pattern="yyyy.MM.dd HH:mm:ss" /></td>
-						<td>${user.userRole}</td>
+								pattern="yyyy.MM.dd" /></td>
+						<td><c:if test="${user.userRole == 'u'}">회원</c:if>
+						</td>
 
 					</tr>
 				</c:forEach>

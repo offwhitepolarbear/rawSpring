@@ -11,7 +11,7 @@
 	<div class="container">
 		<form id='findEmailForm'>
 		<input type="text" class="form-control" name='email'
-				placeholder="이메일을 입력해줴숑의 이름">
+				placeholder="이메일을 입력해주세요">
 		
 			<input type="text" class="form-control" name='name'
 				placeholder="찾으실 회원의 이름">

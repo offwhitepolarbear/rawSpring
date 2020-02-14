@@ -24,10 +24,17 @@
 			이메일 <div class='input-group'>
 				<input type="text" class="form-control" name='email'>@
 				<input type="text" class="form-control" name='emailTail'>
+				<select class="custom-select" name='emailTailSelector'>
+					<option value="010" selected>직접입력</option>
+					<option value="011">011</option>
+					<option value="016">016</option>
+					<option value="017">017</option>
+					<option value="019">019</option>
+				</select> 
 				</div>
 			비밀번호 <input type="password" class="form-control" name='password'>
 			비밀번호확인 <input type="password" class="form-control" name='password2'>
-			이름 <input type="text" class="form-control" name='name'> 닉네임 <input
+			이름 <input type="text" class="form-control" name='name' placeholder="이름을 입력해주세요"> 닉네임 <input
 				type="text" class="form-control" name='nickname'> 전화번호
 			<div class="input-group" id='phoneNumber'>
 				<select class="custom-select custom-select" name='phoneHead'>

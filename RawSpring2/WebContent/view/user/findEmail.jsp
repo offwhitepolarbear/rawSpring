@@ -43,14 +43,14 @@
 <script type="text/javascript">
 	$("#findEmail").click(function() {
 		var phoneHead = $("[name='phoneBody']").val();
-		alert(phoneNumberValidationChecker(phoneHead));
-		//$("#findEmailForm").attr("action","/user/findEmail").attr("method","POST").submit();
+		//alert(phoneNumberValidationChecker(phoneHead));
+		$("#findEmailForm").attr("action","/user/findEmail").attr("method","POST").submit();
 	});
 	
 	function phoneNumberValidationChecker(numbers){
 		var result = false;
 		var onlyNumber = /[^0-9]/g;
-		test.
+		
 		if(numbers.length==3){
 			result = true;
 		}
