@@ -64,6 +64,32 @@ cursor: pointer;
 var uri = window.location.pathname.substring(7);
 $(function(){
 	
+	$(function() {
+		$.ajax({
+					headers : {
+						"Accept" : "application/json",
+						"Content-Type" : "application/json"
+					},
+					type : "POST",
+					url : "/user/rest/sessionUserCheck",
+					dataType : "text",
+					beforeSend : function() {
+					},
+					error : function(request, status, error) {
+						alert("로그인 여부 확인중 에러 발생함");
+					},
+					success : function(data) {
+						if(data ==''){
+							$("#writeArticle").remove();
+						}
+						
+					},
+					complete : function() {
+					}
+				});
+	});
+	
+	
 	var articleSearch = new Object();
 	articleSearch.boardURL = uri;
 	
@@ -109,13 +135,29 @@ function articleParsing(item, index){
 	articleTag += item.userNickname;
 	articleTag += "</td>";
 	articleTag += "<td>";
-	articleTag += new Date(item.registrationTime);
+	articleTag += dateFormatChanger(item.registrationTime);
 	articleTag += "</td>";
 	articleTag += "</tr>";
 						
 	$(".articleInfo").append(articleTag);
    
 }
+
+
+function dateFormatChanger(dbDate){
+	
+	var rawDate = new Date(dbDate);
+	
+	var returnDate = rawDate.getFullYear()+"-";
+	returnDate += (rawDate.getMonth()+1) +"-" ;
+	returnDate += rawDate.getDate()+" ";
+	returnDate += rawDate.getHours()+":";
+	returnDate += rawDate.getMinutes()+":";
+	returnDate += rawDate.getSeconds();
+	
+	return returnDate;
+}
+
 
 $(document).on("click", ".title", function() {
 	location.href= "/article/"+$(this).attr('id');

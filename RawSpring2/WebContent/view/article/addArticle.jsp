@@ -17,7 +17,7 @@
 	<div class='container'>
 			
 		<p>
-		XX 게시판 글쓰기
+		글쓰기
 		<p>
 		<form id='articleForm' action="/article/addArticle" method="post">
 		<div class='input-group'>
@@ -91,7 +91,6 @@ $("#registration").click(function(){
 	$("#articleForm").attr('action',"/article/addArticle").attr("method","post").submit();	
 });
 
-alert($("#boardId").val());
 </script>
 </body>
 </html>
