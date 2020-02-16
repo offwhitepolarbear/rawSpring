@@ -54,7 +54,7 @@
 				
 				<input type="text" class="form-control" name='phoneTail' id='phoneTail' maxlength='4'>
 			</div>
-			<div id='underPhoneNumber'>몸통</div>
+			<div id='underPhoneNumber'></div>
 		</form>
 		<hr>
 		<button type="button" class="btn btn-outline-primary btn-lg btn-block"
