@@ -116,15 +116,18 @@
 				beforeSend : function() {
 				},
 				error : function(request, status, error) {
-					alert("에러발생함");
+					alert("통신에 실패하였습니다 다시시도해주세요");
 				},
 				success : function(data) {
-					alert("success");
-					alert(data);
-					location.href=urlFrom;
+					if(data=='login Failed'){
+						alert("접속에 실패하였습니다 아이디와 비밀번호를 확인해주세요");
+					}
+					else{
+						location.href=urlFrom;
+					}
+					
 				},
 				complete : function() {
-					alert("통신완료");
 				}
 			});
 		}

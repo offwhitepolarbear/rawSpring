@@ -39,9 +39,7 @@ public class UserRestController {
 	@ResponseBody
 	@PostMapping(value="sessionUserCheck")
 	public User sessionCheck(HttpSession session) {
-		User user = (User)session.getAttribute("user");
-		System.out.println(user);
-		return user;
+		return (User)session.getAttribute("user");
 	}
 	
 }

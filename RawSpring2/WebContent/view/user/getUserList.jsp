@@ -48,7 +48,11 @@
 				</tr>
 			</thead>
 			<tbody>
-
+				<c:if test="${empty userList}">
+				<tr><td>검색조건에 해당하는 자료가 없습니다.</td></tr>
+				</c:if>
+			<c:if test="${!empty userList}">
+			
 				<c:forEach var="user" items="${userList}">
 					<tr>
 						<td>${user.name}</td>
@@ -58,12 +62,10 @@
 							${user.phoneTail}</td>
 						<td><fmt:formatDate value="${user.registerTime}"
 								pattern="yyyy.MM.dd" /></td>
-						<td><c:if test="${user.userRole == 'u'}">회원</c:if>
-						</td>
-
+						<td>${user.userRole}</td>
 					</tr>
 				</c:forEach>
-
+				</c:if>
 			</tbody>
 		</table>
 	</div>

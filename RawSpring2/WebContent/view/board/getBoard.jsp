@@ -64,6 +64,32 @@ cursor: pointer;
 var uri = window.location.pathname.substring(7);
 $(function(){
 	
+	$(function() {
+		$.ajax({
+					headers : {
+						"Accept" : "application/json",
+						"Content-Type" : "application/json"
+					},
+					type : "POST",
+					url : "/user/rest/sessionUserCheck",
+					dataType : "text",
+					beforeSend : function() {
+					},
+					error : function(request, status, error) {
+						alert("로그인 여부 확인중 에러 발생함");
+					},
+					success : function(data) {
+						if(data ==''){
+							$("#writeArticle").remove();
+						}
+						
+					},
+					complete : function() {
+					}
+				});
+	});
+	
+	
 	var articleSearch = new Object();
 	articleSearch.boardURL = uri;
 	
@@ -109,7 +135,7 @@ function articleParsing(item, index){
 	articleTag += item.userNickname;
 	articleTag += "</td>";
 	articleTag += "<td>";
-	articleTag += new Date(item.registrationTime);
+	articleTag += dateFormatChanger(item.registrationTime);
 	articleTag += "</td>";
 	articleTag += "</tr>";
 						
@@ -117,6 +143,27 @@ function articleParsing(item, index){
    
 }
 
+function dateFormatChanger(dbDate){
+	
+	var rawDate = new Date(dbDate);
+	
+	var returnDate = rawDate.getFullYear()+"-";
+	returnDate += oneDigitDateChanger((rawDate.getMonth()+1)) +"-" ;
+	returnDate += oneDigitDateChanger(rawDate.getDate()) + " ";
+	returnDate += oneDigitDateChanger(rawDate.getHours()) + ":";
+	returnDate += oneDigitDateChanger(rawDate.getMinutes()) + ":";
+	returnDate += oneDigitDateChanger(rawDate.getSeconds());
+	return returnDate;
+}
+
+function oneDigitDateChanger(rawDate){
+	if(rawDate<10){
+		return "0"+rawDate+"";
+	}
+	else{
+		return rawDate;
+	}
+}
 $(document).on("click", ".title", function() {
 	location.href= "/article/"+$(this).attr('id');
 });
