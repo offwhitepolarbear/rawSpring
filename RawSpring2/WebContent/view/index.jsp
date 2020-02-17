@@ -45,10 +45,6 @@ height:600px;
   </a>
 </div>
 			
-			
-			메인화면
-			
-			
 			</div>
 		</div>
 	</div>
