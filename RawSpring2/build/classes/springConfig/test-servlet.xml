@@ -54,7 +54,6 @@
 		, board.raw.article
 		, board.raw.reply
 		, board.raw.domain
-		, common.domain
 		, board.raw.aspect" />
 
 	<mvc:resources mapping="/favicon.ico"

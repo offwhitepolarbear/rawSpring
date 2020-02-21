@@ -50,7 +50,12 @@ align: center;
 	src="/javascript/bootstrap/js/popper.min.js"></script>
 <script type="text/javascript"
 	src="/javascript/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="/javascript/app/common/dateChanger.js"></script>
+	
 <script type="text/javascript">
+
+
 var articleId= window.location.pathname.substring(9);
 $(function(){
 	var articleInfo = new Object();
@@ -143,28 +148,6 @@ function replyParsing(item, index){
 	$("#replys").append(replyTag);
 	
 };
-
-function dateFormatChanger(dbDate){
-	
-	var rawDate = new Date(dbDate);
-	
-	var returnDate = rawDate.getFullYear()+"-";
-	returnDate += oneDigitDateChanger((rawDate.getMonth()+1)) +"-" ;
-	returnDate += oneDigitDateChanger(rawDate.getDate()) + " ";
-	returnDate += oneDigitDateChanger(rawDate.getHours()) + ":";
-	returnDate += oneDigitDateChanger(rawDate.getMinutes()) + ":";
-	returnDate += oneDigitDateChanger(rawDate.getSeconds());
-	return returnDate;
-}
-
-function oneDigitDateChanger(rawDate){
-	if(rawDate<10){
-		return "0"+rawDate+"";
-	}
-	else{
-		return rawDate;
-	}
-}
 
 $("#replySubmit").click(function(){
 	

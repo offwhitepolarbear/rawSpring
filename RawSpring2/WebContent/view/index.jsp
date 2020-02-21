@@ -5,9 +5,9 @@
 <html>
 <head>
 <style type="text/css">
-.carousel-item{
-width:100%;
-height:600px; 
+.carousel-item {
+	width: 100%;
+	height: 600px;
 }
 </style>
 <meta charset="UTF-8">
@@ -22,29 +22,38 @@ height:600px;
 				</c:import>
 			</div>
 			<div class="col-10">
-			
-			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/resources/main/mandarine.jpg" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="/resources/main/strawberry.jpg" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="resources/main/banana.jpg" class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-			
+
+				<div id="carouselExampleControls" class="carousel slide"
+					data-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="/resources/main/mandarine.jpg" class="d-block w-100"
+								alt="...">
+						</div>
+						<div class="carousel-item">
+							<img src="/resources/main/strawberry.jpg" class="d-block w-100"
+								alt="...">
+						</div>
+						<div class="carousel-item">
+							<img src="resources/main/banana.jpg" class="d-block w-100"
+								alt="...">
+						</div>
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleControls"
+						role="button" data-slide="prev"> <span
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+						class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carouselExampleControls"
+						role="button" data-slide="next"> <span
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span
+						class="sr-only">Next</span>
+					</a>
+				</div>
+
+				<button type="button" class="btn btn-success" id='test1'>테스트1</button>
+				<button type="button" class="btn btn-danger" id='test2'>테스트2</button>
+				<button type="button" class="btn btn-warning" id='test3'>테스트3</button>
+				
 			</div>
 		</div>
 	</div>
@@ -63,7 +72,15 @@ height:600px;
 	src="/javascript/bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-	
+	$("#test1").click(function(){
+		location.href = "/test/1";
+	});
+	$("#test2").click(function(){
+		location.href = "/test/2";
+	});
+	$("#test3").click(function(){
+		location.href = "/test/3";
+	});
 </script>
 
 </html>
