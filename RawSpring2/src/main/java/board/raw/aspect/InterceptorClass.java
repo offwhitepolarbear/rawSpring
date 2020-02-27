@@ -31,7 +31,7 @@ public class InterceptorClass implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse arg1, Object arg2) throws Exception {
 		
 		HttpSession session = request.getSession();
-		System.out.println("세션에 유저 있나"+session.getAttribute("user"));
+		System.out.println("세션에 유저 확인 : "+session.getAttribute("user"));
 		
 		String loginURL = "/user/login";
 		String requestFrom = request.getHeader("REFERER");
@@ -39,8 +39,8 @@ public class InterceptorClass implements HandlerInterceptor {
 			request.setAttribute("url",requestFrom); 
 		}
 		
-		System.out.println("기존 페이지 주소"+request.getHeader("REFERER"));
-		System.out.println("요청주소"+request.getRequestURL());
+		System.out.println("기존 페이지 주소 : "+request.getHeader("REFERER"));
+		System.out.println("요청주소 : "+request.getRequestURL());
 		
 		return true;
 	}

@@ -77,7 +77,7 @@
 
 		<tr>
 			<td>비고</td>
-			<td colspan='2'><textarea placeholder="길게 입력가능"></textarea></td>
+			<td colspan='2'><textarea style='resize: none; width: 98%;' placeholder="길게 입력가능" maxlength="500"></textarea></td>
 		</tr>
 
 	</table>

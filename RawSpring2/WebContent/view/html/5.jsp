@@ -61,7 +61,7 @@
 				</div>
 			</div>
 		</div>
-
+		<br>
 		<button type='button'>이전</button>
 		<button type='button'>가입완료</button>
 
